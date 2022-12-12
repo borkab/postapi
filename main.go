@@ -1,7 +1,24 @@
 package main
 
-import "postapi/app"
+import (
+	"log"
+	"net/http"
+	"os"
+	"postapi/app"
+)
 
 func main() {
-	app.New()
+	app := app.New()
+
+	http.HandleFunc("/", app.Router.ServeHTTP)
+
+	err := http.ListenAndServe(":9000", nil)
+	check(err)
+}
+
+func check(e error) error {
+	if e != nil {
+		log.Println(e)
+		os.Exit(1)
+	}
 }
