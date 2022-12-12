@@ -16,9 +16,10 @@ func main() {
 	check(err)
 }
 
-func check(e error) error {
+func check(e error) {
 	if e != nil {
 		log.Println(e)
 		os.Exit(1)
 	}
+
 }
